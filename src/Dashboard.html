@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/styleDashboard.css" type="text/css">
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <img src="../assets/Logo.svg">
+            <ul>
+                <li>
+                    <img src="../assets/Notification.svg" style="
+                    padding-bottom: 10px";>
+                </li>
+                <li>
+                    <img src="../assets/User Profile.svg">
+                </li>
+            </ul>
+        </nav>
+    </div>
+   <div class="body-box">
+    <div class="col">
+        <h2>MY TASKS</h2>
+        <div class="row">
+            <h1>To Do List</h1>
+            <a href="#" id="tambahTugas"><img src="../assets/CTA.svg" alt=""></a>
+        </div>
+        <p class="tugas">Buat list tugas harian saya</p>
+        <div class="row">
+            <h3>Sort By</h3>
+            <a href="#" class="frameTanggal" id="tanggalOrange" ><img src="../assets/Dropdown.svg" alt=""></a>
+            <a href="#" class="frame" id="tanggalAbu"><img  src="../assets/Frame 58.svg" alt=""></a>
+
+        </div>
+        <div id="contentId" class="content">
+            <div class="row-product" style= "width: 345px;">
+                <img src="../assets/Rectangle 21.svg" alt="">
+                <input class="selesai" type="text" id="namaTugas" name="namaTugas" placeholder="Masukan Nama Tugas">
+            </div>
+            <div class="row-product" style= "width: 340px; margin-left: 38px; " >
+                <img src="../assets/menu.svg" alt="">
+                <input class="opsi" type="text" id="namaTugas" name="namaTugas" placeholder="Deskripsi Tugas (Optional)">
+            </div>
+            <div class="row-product" style= "width: 340px; margin-left: 38px;">
+                <img src="../assets/Calendar.svg" alt="">
+                <input class="opsi" type="text" id="namaTugas" name="namaTugas" placeholder="Tanggal & Waktu)">
+            </div>
+            
+        </div>
+        <div class="row-product">
+            <div class="col-product" style="width: 300px;">
+                <input type="radio" id="checkproduct1" name="radio"/>
+                <label class="product" for="checkproduct1">Product Design</label>
+                <h4 class="hari">Hari Ini</h4>
+            </div>
+            <img src="../assets/Arrow - Down 2.svg" alt="">
+        </div>
+        <p class="isi">Tugas untuk design team</p>
+        <div class="row-product">
+            <div class="col-product" style="width: 323px;">
+                <input type="radio" id="checkproduct2" name="radio"/>
+                <label class="product" for="checkproduct2">Development</label>
+                <h4 class="hari">15 Juni 2022</h4>
+            </div>
+            <img src="../assets/Arrow - Down 2.svg" alt="">
+        </div>
+        <div class="row-product">
+            <div class="col-product" style="width: 455px;">
+                <input type="radio" id="checkproduct3" name="radio"/>
+                <label class="product" for="checkproduct3">Launching Wazwez Website</label>
+                <h4 class="hari">15 Juni 2022</h4>
+            </div>
+            <img src="../assets/Arrow - Down 2.svg" alt="">
+        </div>
+            <div id="tanggalId" class="pilihan">
+                 <div class="option">
+                     <input type="radio" id="check1" name="radio"/>
+                     <label for="check1">By Tanggal</label>
+                 </div>
+                 <div class="option">
+                     <input type="radio" id="check2" name="radio"/>
+                     <label for="check2">By Time</label>
+                 </div>  
+                 <div class="option">
+                     <input type="radio" id="check3" name="radio"/>
+                     <label for="check3">Terbaru</label>
+                 </div>  
+             </div> 
+        
+        <div class="bawah">
+            <div class="row-selesai" style= "width: 291px">
+                <img src="../assets/Arrow - Right 2.svg" alt="">
+                <h4 class="selesai" style="color:#7A7F83;">Terselesaikan (3 tugas)</h4>
+            </div>
+        </div>
+       
+    </div>
+        
+   </div>
+<script src="../js/script.js"></script>
+
+   
+</body>
+</html>
