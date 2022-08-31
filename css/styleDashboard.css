@@ -177,6 +177,7 @@ nav ul li{
     padding: 10px 50px 0 0px;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 .opsi{
     width: 223px;
@@ -218,6 +219,9 @@ nav ul li{
     display: none;
  }
  .hidden{
+    display: none;
+ }
+ .tasknew{
     display: none;
  }
 
