@@ -134,7 +134,7 @@ nav ul li{
     font-size: 12px;
 }
 .body-box .bawah{
-    width: 85%;
+    width: 89%;
     border : none;
     border-top: 1px solid #CCCED2;
     outline : none;
@@ -150,6 +150,7 @@ nav ul li{
     order: 1;
     border: none;
     background: none;
+    padding: 5px 0px;
 }
 .isi{
     width: 300px;
@@ -170,6 +171,14 @@ nav ul li{
     left: 0px;
     top: 186px;
     background: #F5F5F5;
+}
+.row-terselesaikan{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px 0 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
 }
 .row-selesai{
     display: flex;
@@ -270,20 +279,17 @@ nav ul li{
  .container {
     font-weight: 500;
     font-size: 18px;
-    text-decoration-line: line-through;
     color: #293038;
     order: 0;
+    cursor: pointer;
   }
-  /* Hide the browser's default checkbox */
   .container input {
     position: absolute;
     opacity: 0;
-    cursor: pointer;
     height: 0;
     width: 0;
   }
   
-  /* Create a custom checkbox */
   .checkmark {
     position: absolute;
     top: 14px;
@@ -294,24 +300,25 @@ nav ul li{
     background-color: #FF5F26;
   }
   
-  /* When the checkbox is checked, add a blue background */
   .container input:checked ~ .checkmark {
     background-color: #FF5F26;
+
   }
+  input[type=checkbox]:checked  + label{
+    text-decoration: line-through;
+ }
   
-  /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
     content: "";
     position: absolute;
     display: none;
   }
   
-  /* Show the checkmark when checked */
   .container input:checked ~ .checkmark:after {
     display: block;
+
   }
   
-  /* Style the checkmark/indicator */
   .container .checkmark:after {
     left: 9px;
     top: 5px;
