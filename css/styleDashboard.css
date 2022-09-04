@@ -31,14 +31,14 @@ nav ul li{
     margin: 0px 10px;
 }
 .body-box{
-    position: absolute;
+    position: relative;
     width: 55%;
-    height: 600px;
     margin: 0 20%;
-    top: 100px;
     background: #FFFFFF;
     box-shadow: 0px 16px 90px rgb(19 7 52 / 8%);
     border-radius: 12px;
+    height: 80%;
+    padding-top: 10px;
 }
 .col{
     font-family: 'Poppins';
@@ -51,8 +51,7 @@ nav ul li{
     flex: none;
     order: 0;
     flex-grow: 0;
-    height: 500px;
-    margin-top: 40px;
+    margin-top: 21px;
 }
 .col h2{
     display: flex;
@@ -139,8 +138,9 @@ nav ul li{
     border-top: 1px solid #CCCED2;
     outline : none;
     margin-left: 42px;
-    position: absolute;
-    bottom: 8px;
+    position: relative;
+    margin-top: 160px;
+    padding-bottom: 20px;
 }
 .selesai{
     width: 216px;
@@ -234,6 +234,8 @@ nav ul li{
     display: none;
  }
 
+
+
  .option input{
     display: none;
  }
@@ -269,6 +271,7 @@ nav ul li{
  }
  .show {
     display:block;}
+
  .col-product input{
     width: 28px;
     height: 28px;
@@ -330,7 +333,44 @@ nav ul li{
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
- 
+.subtask{
+    position: initial;
+    width: 693px;
+    height: 224px;
+    background: #F5F5F5;
+    border-radius: 8px;
+    margin: 10px 42px;
+}
+.title-subtask{
+    display: flex;
+    justify-content:space-between;
+    padding: 25px 16px 0;
+    
+}
+.title-subtask p{
+    width: 66px;
+    height: 16px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    align-items: center;
+    color: #293038;
+}
+.list-subtask .container{
+    font-weight: 400;
+    font-size: 16px;
+    color: #293038;
+}
+.list-subtask .col-product{
+    height: 25px;
+}
+.list-subtask .row-product{
+    padding: 10px 20px 0 40px;
+}   
+.list-subtask .checkmark{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCED2;
+}
  @media only screen and (max-width: 1200px){
     .body-box{
         width: 70%;
@@ -344,5 +384,4 @@ nav ul li{
     .bawah{
         width: 85%;
     }
- }
-
+}

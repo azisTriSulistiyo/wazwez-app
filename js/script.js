@@ -25,3 +25,8 @@ document.getElementById("terselesaikan").onclick = function() {myFunctionSelesai
 function myFunctionSelesai(){
   document.getElementById("selesaiId").classList.toggle("show");
 }
+document.getElementById("subTask").onclick = function() {myFunctionSubtask()};
+
+function myFunctionSubtask(){
+  document.getElementById("subTaskView").classList.toggle("show");
+}
