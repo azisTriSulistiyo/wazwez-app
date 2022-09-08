@@ -1,0 +1,24 @@
+Database:
+Tabel:
+1. User:
+- `user_id` int(100) NOT NULL,
+-`user_name` varchar(100) NOT NULL,
+-`password` varchar(100) NOT NULL
+2. Student:
+- `student_id` int(100) NOT NULL,
+-`name` varchar(100) NOT NULL,
+-`photo_profile_link` varchar(200) NOT NULL,
+-`user_id` int(100) NOT NULL
+3. Task:
+- `task_id` int(100) NOT NULL,
+-`name_task` varchar(100) NOT NULL,
+-`description` varchar(200) NOT NULL,
+-`due_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+-`is_finished` tinyint(1) NOT NULL,
+-`student_id` int(100) NOT NULL
+4. Subtask:
+-`subtask_id` int(100) NOT NULL,
+-`name_subtask` varchar(200) NOT NULL,
+-`is_finished` tinyint(1) NOT NULL,
+-`task_id` int(100) NOT NULL
+

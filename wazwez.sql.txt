@@ -1,0 +1,14 @@
+1. Untuk menampilkan semua task user id = 1
+   SELECT name_task, description, due_date from task a
+join student b on a.student_id=b.student_id
+WHERE user_id = 1;
+2. Untuk menampilkan nama dan profil user
+SELECT name, photo_profile_link from student where user_id = 1;
+3. Untuk menampilkan data subtask
+SELECT name_subtask from subtask where task_id = 1;
+4. Untuk menampilkan data task yang sudah terselesaikan
+SELECT name_task from task a
+join student b on a.student_id=b.student_id
+WHERE user_id = 1 and is_finished =1;
+
+
