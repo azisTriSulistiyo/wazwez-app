@@ -109,8 +109,7 @@ nav ul li{
 }
 .col-product{
     display: flex;
-    justify-content: space-between;
-    padding: 10px 50px 0 0;
+    padding: 10px 50px 0 10px;
     align-items: center;
 }
 .product{
@@ -119,6 +118,7 @@ nav ul li{
     font-size: 18px;
     color: #293038;
     cursor: pointer;
+    padding-left: 10px;
 }
 .hari{
     flex-direction: row;
@@ -131,6 +131,7 @@ nav ul li{
     order: 1;
     font-weight: 500;
     font-size: 12px;
+    margin-left: 10px;
 }
 .body-box .bawah{
     width: 89%;
@@ -160,7 +161,7 @@ nav ul li{
     align-items: center;
     color: #7A7F83;
     order: 1;
-    padding-left: 77px;
+    padding-left: 90px;
 
 }
 .content{

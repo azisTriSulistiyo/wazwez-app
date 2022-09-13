@@ -1,3 +1,26 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "wazwez";
+
+
+// Create connection
+$conn = new mysqli($servername, $username,$password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+$sql = "SELECT name_task, description, date_format(due_date, '%d %M %Y') as date FROM task where is_finished=0 ";
+$result = $conn->query($sql);
+
+$sql2 = "SELECT name_task FROM task WHERE is_finished = 1";
+$result2 = $conn->query($sql2);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/styleDashboard.css" type="text/css">
+    <link rel="stylesheet" href="./css/style.css" type="text/css">
 </head>
 <body>
     <div class="header">
@@ -14,11 +37,11 @@
             <!-- <img src="../assets/Logo.svg"> -->
             <ul>
                 <li>
-                    <img src="../assets/Notification.svg" style="
+                    <img src="./assets/Notification.svg" style="
                     padding-bottom: 10px";>
                 </li>
                 <li>
-                    <img src="../assets/User Profile.svg">
+                    <img src="./assets/User Profile.svg">
                 </li>
             </ul>
         </nav>
@@ -28,43 +51,48 @@
         <h2>MY TASKS</h2>
         <div class="row">
             <h1>To Do List</h1>
-            <a href="#" id="tambahTugas"><img src="../assets/CTA.svg" alt=""></a>
+            <a href="#" id="tambahTugas"><img src="./assets/CTA.svg" alt=""></a>
         </div>
         <p class="tugas">Buat list tugas harian saya</p>
         <div class="row">
             <h3>Sort By</h3>
-            <a href="#" class="frameTanggal" id="tanggalOrange" ><img src="../assets/Dropdown.svg" alt=""></a>
-            <a href="#" class="frame" id="tanggalAbu"><img  src="../assets/Frame 58.svg" alt=""></a>
+            <a href="#" class="frameTanggal" id="tanggalOrange" ><img src="./assets/Dropdown.svg" alt=""></a>
+            <a href="#" class="frame" id="tanggalAbu"><img  src="./assets/Frame 58.svg" alt=""></a>
 
         </div>
         <div id="contentId" class="content">
             <div class="row-product" style= "width: 345px;">
-                <img src="../assets/Rectangle 21.svg" alt="">
+                <img src="./assets/Rectangle 21.svg" alt="">
                 <input class="selesai" type="text" id="namaTugas" name="namaTugas" placeholder="Masukan Nama Tugas">
             </div>
             <div class="row-product" style= "width: 340px; margin-left: 38px; " >
-                <img src="../assets/menu.svg" alt="">
+                <img src="./assets/menu.svg" alt="">
                 <input class="opsi" type="text" id="namaTugas" name="namaTugas" placeholder="Deskripsi Tugas (Optional)">
             </div>
             <div class="row-product" style= "width: 340px; margin-left: 38px;">
-                <img src="../assets/Calendar.svg" alt="">
+                <img src="./assets/Calendar.svg" alt="">
                 <input class="opsi" type="text" id="namaTugas" name="namaTugas" placeholder="Tanggal & Waktu)">
             </div>
             
         </div>
-        <div class="row-product">
-            <div class="col-product" style="width: 300px;">
-                <input type="radio" id="checkproduct1" name="radio"/>
-                <label class="product" for="checkproduct1">Product Design</label>
-                <h4 class="hari">Hari Ini</h4>
-            </div>
-            <a href="#" id="subTask"><img src="../assets/Arrow - Down 2.svg" alt=""></a>
-        </div>
-        <p class="isi">Tugas untuk design team</p>
+        <?php
+            foreach($result as $value){
+                echo '<div class="row-product">';
+                echo '<div class="col-product">' ;
+                echo '<input type="radio" id="checkproduct1" name="radio"/>' ;
+                echo '<label class="product" for="checkproduct1">'. $value["name_task"] .'</label>' ;
+                echo '<h4 class="hari">'. $value["date"] .'</h4>' ;
+                echo '</div>'  ;
+                echo '<a href="#" id="subTask"><img src="./assets/Arrow - Down 2.svg" alt=""></a>';
+                echo '</div>' ;
+                echo '<p class="isi">'.$value["description"] .'</p>';
+            }
+        ?>
+        
         <div id="subTaskView" class="subtask hidden" >
             <div class="title-subtask">
                 <p>Subtask</p>
-                <img src="../assets/Frame 55.svg" alt="">
+                <img src="./assets/Frame 55.svg" alt="">
             </div>
             <div class="list-subtask" style="padding-left: 10px;">
                 <div class="row-product">
@@ -74,7 +102,7 @@
                             <span class="checkmark"></span>
                           </label>
                     </div>
-                    <img src="../assets/Vector.svg" alt="">
+                    <img src="./assets/Vector.svg" alt="">
                 </div>
                 <div class="row-product">
                     <div class="col-product" style="width: 246px;">
@@ -83,7 +111,7 @@
                             <span class="checkmark"></span>
                           </label>
                     </div>
-                    <img src="../assets/Vector.svg" alt="">
+                    <img src="./assets/Vector.svg" alt="">
                 </div>
                 <div class="row-product">
                     <div class="col-product" style="width: 250px;">
@@ -92,7 +120,7 @@
                             <span class="checkmark"></span>
                           </label>
                     </div>
-                    <img src="../assets/Vector.svg" alt="">
+                    <img src="./assets/Vector.svg" alt="">
                 </div>
                 <div class="row-product">
                     <div class="col-product" style="width: 236px;">
@@ -101,27 +129,11 @@
                             <span class="checkmark"></span>
                           </label>
                     </div>
-                    <img src="../assets/Vector.svg" alt="">
+                    <img src="./assets/Vector.svg" alt="">
                 </div>
 
                 
             </div>
-        </div>
-        <div class="row-product">
-            <div class="col-product" style="width: 323px;">
-                <input type="radio" id="checkproduct2" name="radio"/>
-                <label class="product" for="checkproduct2">Development</label>
-                <h4 class="hari">15 Juni 2022</h4>
-            </div>
-            <img src="../assets/Arrow - Down 2.svg" alt="">
-        </div>
-        <div class="row-product">
-            <div class="col-product" style="width: 455px;">
-                <input type="radio" id="checkproduct3" name="radio"/>
-                <label class="product" for="checkproduct3">Launching Wazwez Website</label>
-                <h4 class="hari">15 Juni 2022</h4>
-            </div>
-            <img src="../assets/Arrow - Down 2.svg" alt="">
         </div>
             <div id="tanggalId" class="pilihan">
                  <div class="option">
@@ -140,40 +152,29 @@
         
         <div class="bawah">
             <div class="row-selesai" id="terselesaikan" style= "width: 291px">
-                <img src="../assets/Arrow - Right 2.svg" alt="">
+                <img src="./assets/Arrow - Right 2.svg" alt="">
                 <h4 class="selesai" style="color:#7A7F83;">Terselesaikan (3 tugas)</h4>
             </div>
+        
+
+
+
             <div class="tasknew" id="selesaiId" >
-                <div class="row-terselesaikan">
-                    <div class="col-product">
-                        <label class="container">
-                            <input type="checkbox" id="terselesaikan1" ><label>Requirements Detail</label>
-                            <span class="checkmark"></span>
-                          </label>
-                         
-                     </div>
-                     <img src="../assets/Arrow - Down 2.svg" alt="">
-                </div>
-                <div class="row-terselesaikan">
-                    <div class="col-product">
-                        <label class="container">
-                            <input type="checkbox" id="terselesaikan2"><label>Backlog Teams</label>
-                            <span class="checkmark"></span>
-                          </label>
-                        
-                     </div>
-                     <img src="../assets/Arrow - Down 2.svg" alt="">
-                </div>
-                <div class="row-terselesaikan">
-                    <div class="col-product">
-                        <label class="container">
-                            <input type="checkbox" id="terselesaikan3"><label>Meeting With Teams</label>
-                            <span class="checkmark"></span>
-                          </label>
-                        
-                     </div>
-                     <img src="../assets/Arrow - Down 2.svg" alt="">
-                </div>
+            <?php
+
+                foreach($result2 as $a){
+                    echo '<div class="row-terselesaikan">';
+                    echo '<div class="col-product">';
+                    echo '<label class="container">';
+                    echo '<input type="checkbox" id="terselesaikan1" ><label>' .$a["name_task"] .'</label>';
+                    echo '<span class="checkmark"></span>';
+                    echo '</label>';
+                    echo '</div>';
+                    echo '<img src="./assets/Arrow - Down 2.svg" alt="">';
+                    echo '</div>'; 
+                }
+            ?>
+
             </div>
             
     </div>
@@ -181,7 +182,7 @@
     </div>
         
    </div>
-<script src="../js/script.js"></script>
+<script src="./js/script.js"></script>
 
 </body>
 </html>
