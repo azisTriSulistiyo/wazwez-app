@@ -12,11 +12,14 @@ $conn = new mysqli($servername, $username,$password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT name_task, description, date_format(due_date, '%d %M %Y') as date FROM task where is_finished=0 ";
+$sql = "SELECT name_task, description, date_format(due_date, '%d %M %Y') as date FROM task where is_finished=0 and student_id = 1";
 $result = $conn->query($sql);
 
-$sql2 = "SELECT name_task FROM task WHERE is_finished = 1";
+$sql2 = "SELECT name_task FROM task WHERE is_finished = 1 and student_id = 1";
 $result2 = $conn->query($sql2);
+
+$sql3 = "SELECT name_subtask from subtask WHERE task_id = 1;";
+$result3 = $conn->query($sql3);
 
 
 ?>
@@ -95,43 +98,19 @@ $result2 = $conn->query($sql2);
                 <img src="./assets/Frame 55.svg" alt="">
             </div>
             <div class="list-subtask" style="padding-left: 10px;">
-                <div class="row-product">
-                    <div class="col-product" style="width: 203px;">
-                        <label class="container">
-                            <input type="checkbox"><label>Design review</label>
-                            <span class="checkmark"></span>
-                          </label>
-                    </div>
-                    <img src="./assets/Vector.svg" alt="">
-                </div>
-                <div class="row-product">
-                    <div class="col-product" style="width: 246px;">
-                        <label class="container">
-                            <input type="checkbox"><label>Low-Fidelity design</label>
-                            <span class="checkmark"></span>
-                          </label>
-                    </div>
-                    <img src="./assets/Vector.svg" alt="">
-                </div>
-                <div class="row-product">
-                    <div class="col-product" style="width: 250px;">
-                        <label class="container">
-                            <input type="checkbox"><label>High-Fidelity design</label>
-                            <span class="checkmark"></span>
-                          </label>
-                    </div>
-                    <img src="./assets/Vector.svg" alt="">
-                </div>
-                <div class="row-product">
-                    <div class="col-product" style="width: 236px;">
-                        <label class="container">
-                            <input type="checkbox"><label>Design Guidelines</label>
-                            <span class="checkmark"></span>
-                          </label>
-                    </div>
-                    <img src="./assets/Vector.svg" alt="">
-                </div>
-
+            <?php
+                foreach($result3 as $subtask){
+                    echo '<div class="row-product">';
+                    echo '<div class="col-product">';
+                    echo '<label class="container">';
+                    echo '<input type="checkbox"><label>'. $subtask["name_subtask"]. '</label>';
+                    echo '<span class="checkmark"></span>';
+                    echo '</label>';
+                    echo '</div>';
+                    echo '<img src="./assets/Vector.svg" alt="">';
+                    echo '</div>';
+                }
+            ?>
                 
             </div>
         </div>
