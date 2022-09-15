@@ -21,6 +21,9 @@ $result2 = $conn->query($sql2);
 $sql3 = "SELECT name_subtask from subtask WHERE task_id = 1;";
 $result3 = $conn->query($sql3);
 
+$sql4 = "INSERT INTO `task` (`task_id`, `name_task`, `description`, `due_date`, `is_finished`, `student_id`) 
+VALUES ({$data['task_id']}, {$data['name_task']}, {$data['description']}, {$data['due_date']}, {$data['is_finished']}, 1)";
+$result4 = $conn->query($sql);
 
 ?>
 
@@ -98,6 +101,7 @@ $result3 = $conn->query($sql3);
                 <img src="./assets/Frame 55.svg" alt="">
             </div>
             <div class="list-subtask" style="padding-left: 10px;">
+             
             <?php
                 foreach($result3 as $subtask){
                     echo '<div class="row-product">';
@@ -110,7 +114,7 @@ $result3 = $conn->query($sql3);
                     echo '<img src="./assets/Vector.svg" alt="">';
                     echo '</div>';
                 }
-            ?>
+            ?> 
                 
             </div>
         </div>
