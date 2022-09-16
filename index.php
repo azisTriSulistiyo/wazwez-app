@@ -12,8 +12,10 @@ $conn = new mysqli($servername, $username,$password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+
 $sql = "SELECT name_task, description, date_format(due_date, '%d %M %Y') as date FROM task where is_finished=0 and student_id = 1";
 $result = $conn->query($sql);
+  
 
 $sql2 = "SELECT name_task FROM task WHERE is_finished = 1 and student_id = 1";
 $result2 = $conn->query($sql2);
@@ -21,10 +23,16 @@ $result2 = $conn->query($sql2);
 $sql3 = "SELECT name_subtask from subtask WHERE task_id = 1;";
 $result3 = $conn->query($sql3);
 
-$sql4 = "INSERT INTO `task` (`task_id`, `name_task`, `description`, `due_date`, `is_finished`, `student_id`) 
-VALUES ({$data['task_id']}, {$data['name_task']}, {$data['description']}, {$data['due_date']}, {$data['is_finished']}, 1)";
-$result4 = $conn->query($sql);
 
+
+if (isset($_POST['submit'])) {
+    $sql4 = "INSERT INTO task (`name_task`, `description`, `due_date`, `student_id`) 
+    VALUES ('{$_POST['name_task']}', '{$_POST['description']}', '{$_POST['due_date']}', 1)";
+    $result4 = $conn->query($sql4);
+    if($result4===true){
+        $result;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +45,8 @@ $result4 = $conn->query($sql);
     <link rel="stylesheet" href="./css/style.css" type="text/css">
 </head>
 <body>
+    <form id="wazwez" action="" method="post">  
+
     <div class="header">
         <nav>
             <div class="logo">waz<span style="color:#FF5F26;">wez</span>.</div>
@@ -69,26 +79,30 @@ $result4 = $conn->query($sql);
         <div id="contentId" class="content">
             <div class="row-product" style= "width: 345px;">
                 <img src="./assets/Rectangle 21.svg" alt="">
-                <input class="selesai" type="text" id="namaTugas" name="namaTugas" placeholder="Masukan Nama Tugas">
+                <input class="selesai" type="text" name="name_task" placeholder="Masukan Nama Tugas">
             </div>
             <div class="row-product" style= "width: 340px; margin-left: 38px; " >
                 <img src="./assets/menu.svg" alt="">
-                <input class="opsi" type="text" id="namaTugas" name="namaTugas" placeholder="Deskripsi Tugas (Optional)">
+                <input class="opsi" type="text" name="description" placeholder="Deskripsi Tugas (Optional)">
             </div>
             <div class="row-product" style= "width: 340px; margin-left: 38px;">
                 <img src="./assets/Calendar.svg" alt="">
-                <input class="opsi" type="text" id="namaTugas" name="namaTugas" placeholder="Tanggal & Waktu)">
+                <input class="opsi" type="datetime-local" name="due_date" placeholder="Tanggal & Waktu)">
             </div>
+            <input type="submit" value="Submit" name="submit">
             
         </div>
         <?php
             foreach($result as $value){
-                echo '<div class="row-product">';
+                echo '<div class="row-product" style="margin-left: 30px;">';
                 echo '<div class="col-product">' ;
-                echo '<input type="radio" id="checkproduct1" name="radio"/>' ;
-                echo '<label class="product" for="checkproduct1">'. $value["name_task"] .'</label>' ;
+                echo '<label class="container">';
+                echo '<input type="checkbox"><label>'.  $value["name_task"] .'</label>';
+                echo '<span class="checkmark"></span>';
+                echo '</label>';
                 echo '<h4 class="hari">'. $value["date"] .'</h4>' ;
-                echo '</div>'  ;
+                echo '<a href="#" id="updateTask" ><img src="./assets/titiktiga.svg" alt="" class="titikTiga"></a>';
+                echo '</div>';
                 echo '<a href="#" id="subTask"><img src="./assets/Arrow - Down 2.svg" alt=""></a>';
                 echo '</div>' ;
                 echo '<p class="isi">'.$value["description"] .'</p>';
@@ -105,7 +119,7 @@ $result4 = $conn->query($sql);
             <?php
                 foreach($result3 as $subtask){
                     echo '<div class="row-product">';
-                    echo '<div class="col-product">';
+                    echo '<div cass="col-product">';
                     echo '<label class="container">';
                     echo '<input type="checkbox"><label>'. $subtask["name_subtask"]. '</label>';
                     echo '<span class="checkmark"></span>';
@@ -165,7 +179,9 @@ $result4 = $conn->query($sql);
     </div>
         
    </div>
-<script src="./js/script.js"></script>
 
+   </form>
+<script src="./js/script.js"></script>
+    
 </body>
 </html>
