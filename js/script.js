@@ -29,4 +29,11 @@ document.getElementById("subTask").onclick = function() {myFunctionSubtask()};
 
 function myFunctionSubtask(){
   document.getElementById("subTaskView").classList.toggle("show");
+  document.getElementById("updateTask").classList.toggle("show");
+}
+
+document.getElementById("updateTask").onclick = function() {myFunctionUpdate()};
+
+function myFunctionUpdate(){
+  document.getElementById("updateId").classList.toggle("show");
 }

@@ -29,6 +29,10 @@ nav ul li{
     display: inline-block;
     list-style: none;
     margin: 0px 10px;
+    vertical-align: middle;
+}
+div ul li p{
+    vertical-align: middle;
 }
 .body-box{
     position: relative;
@@ -110,7 +114,7 @@ nav ul li{
 }
 .col-product{
     display: flex;
-    padding: 10px 50px 0 10px;
+    padding: 10px 50px 0 0;
     align-items: center;
 }
 .product{
@@ -297,7 +301,7 @@ nav ul li{
   
   .checkmark {
     position: absolute;
-    top: 14px;
+    top: 13px;
     left: 0;
     height: 25px;
     border-radius:100px;
@@ -402,4 +406,40 @@ nav ul li{
 .titikTiga{
     position: absolute;
     margin-left: 157px;
+}
+.updateData{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 189px;
+    height: 108px;
+    left: 309px;
+    top: 240px;
+
+    /* Text Colors/White */
+
+    background: #FFFFFF;
+    /* Text Colors/Gray */
+
+    border: 1px solid #CCCED2;
+    border-radius: 8px;
+    z-index: 2;
+    padding: 24px;
+    
+}
+.update{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+
+    width: 150px;
+    height: 24px;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    color: black;
 }
