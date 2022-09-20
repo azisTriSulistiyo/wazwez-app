@@ -1,43 +1,10 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "wazwez";
+// Koneksi ke database
+include_once "connection.php";
+require "select.php";
 
-
-// Create connection
-$conn = new mysqli($servername, $username,$password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT name_task, description, date_format(due_date, '%d %M %Y') as date FROM task where is_finished=0 and student_id = 1";
-$result = $conn->query($sql);
-  
-
-$sql2 = "SELECT name_task FROM task WHERE is_finished = 1 and student_id = 1";
-$result2 = $conn->query($sql2);
-
-$sql3 = "SELECT name_subtask from subtask WHERE task_id = 1;";
-$result3 = $conn->query($sql3);
-
-
-
-if (isset($_POST['submit'])) {
-    $sql4 = "INSERT INTO task (`name_task`, `description`, `due_date`, `student_id`) 
-    VALUES ('{$_POST['name_task']}', '{$_POST['description']}', '{$_POST['due_date']}', 1)";
-    $result4 = $conn->query($sql4);
-    if($result4===true){
-        $result;
-    }
-}
-
-$sql5 = "SELECT name, photo_profile_link from student WHERE user_id = 1";
-$result5 = $conn->query($sql5);
+// Fetch all users data from database
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,22 +21,15 @@ $result5 = $conn->query($sql5);
     <div class="header">
         <nav>
             <div class="logo">waz<span style="color:#FF5F26;">wez</span>.</div>
-            <!-- <img src="../assets/Logo.svg"> -->
             <ul>
-               <li>
-                    <img src="./assets/Notification.svg" style="
-                    padding-bottom: 10px";>
-                </li>
-
+               <li> <img src="./assets/Notification.svg" style="padding-bottom: 10px";> </li>
+               <!-- menampilkan nama dan foto profil berdasarkan userId yg login -->
                 <?php 
                     $data = mysqli_fetch_assoc($result5);
                     echo '<li><img src="'.$data['photo_profile_link'].'"></li>';
                     echo '<li><p>'.$data['name'].'</p></li>';
                 ?> 
-                
-                <li>
-                    <img src="./assets/Arrow - Down 2.svg" alt="">
-                </li>
+                <li><img src="./assets/Arrow - Down 2.svg" alt=""></li>
             </ul>
         </nav>
     </div>
@@ -86,70 +46,79 @@ $result5 = $conn->query($sql5);
                 <a href="#" class="frameTanggal" id="tanggalOrange" ><img src="./assets/Dropdown.svg" alt=""></a>
                 <a href="#" class="frame" id="tanggalAbu"><img  src="./assets/Frame 58.svg" alt=""></a>
             </div>
+
+            <!-- Tampilan untuk insert tugas -->
             <div id="contentId" class="content">
-                <div class="row-product" style= "width: 345px;">
+                <div class="row-add">
                     <img src="./assets/Rectangle 21.svg" alt="">
                     <input class="selesai" type="text" name="name_task" placeholder="Masukan Nama Tugas">
                 </div>
-                <div class="row-product" style= "width: 340px; margin-left: 38px; " >
+                <div class="row-add" style="margin-left:44px;" >
                     <img src="./assets/menu.svg" alt="">
                     <input class="opsi" type="text" name="description" placeholder="Deskripsi Tugas (Optional)">
                 </div>
-                <div class="row-product" style= "width: 340px; margin-left: 38px;">
-                    <img src="./assets/Calendar.svg" alt="">
-                    <input class="opsi" type="datetime-local" name="due_date" placeholder="Tanggal & Waktu)">
-                </div>
-                <input type="submit" value="Submit" name="submit">  
-            </div>
-                <?php
-                    foreach($result as $value){
-                        echo '<div class="row-product" style="margin-left: 42px;">';
-                        echo '<div class="col-product">' ;
-                        echo '<label class="container">';
-                        echo '<input type="checkbox"><label>'.  $value["name_task"] .'</label>';
-                        echo '<span class="checkmark"></span>';
-                        echo '</label>';
-                        echo '<h4 class="hari">'. $value["date"] .'</h4>' ;
-                        echo '<a href="#" id="updateTask" class="hidden"><img src="./assets/titiktiga.svg" alt="" class="titikTiga"></a>';
-                        echo '</div>';
-                        echo '<a href="#" id="subTask"><img src="./assets/Arrow - Down 2.svg" alt=""></a>';
-                        echo '</div>' ;
-                        echo '<p class="isi">'.$value["description"] .'</p>';
-                    }
-                ?>
-            <div id="updateId" class="updateData hidden">
-                    <div class="update">
-                        <img src="./assets/Edit.svg" alt="">
-                        <label>Rename task</label>
+                <div class="row-add" style="margin-left:7px;width:411px;">
+                    <div class="date">
+                        <img src="./assets/Calendar.svg" alt="">
+                        <input class="opsi" type="date" name="due_date" placeholder="Tanggal & Waktu)">
                     </div>
-                    <div class="update">
-                        <img src="./assets/Delete.svg" alt="">
-                        <label>Delete task</label>
-                    </div>  
-            </div> 
-            <div id="subTaskView" class="subtask hidden" >
-                <div class="title-subtask">
-                    <p>Subtask</p>
-                    <img src="./assets/Frame 55.svg" alt="">
-                </div>
-                <div class="list-subtask" style="padding-left: 10px;">
-                
-                    <?php
-                        foreach($result3 as $subtask){
-                            echo '<div class="row-product">';
-                            echo '<div cass="col-product">';
-                            echo '<label class="container">';
-                            echo '<input type="checkbox"><label>'. $subtask["name_subtask"]. '</label>';
-                            echo '<span class="checkmark"></span>';
-                            echo '</label>';
-                            echo '</div>';
-                            echo '<img src="./assets/Vector.svg" alt="">';
-                            echo '</div>';
-                        }
-                    ?>
+                    <input type="submit" class="submit" value="Submit" name="submit">  
+
                 </div>
             </div>
 
+            <!-- Untuk menampilkan daftar task yg belum selesai -->
+                <?php foreach($result as $value):?>
+                        <div class="row-product" style="margin-left: 42px;">
+                        <div class="col-product">
+                        <label class="container">
+                        <input type="checkbox"><label> <?=$value["name_task"] ?></label>
+                        <span class="checkmark"></span>
+                        </label>
+                        <h4 class="hari"><?= $value["date"] ?></h4>
+                        <a href="#" id="updateTask-<?= $value['task_id']?>" class="hidden"><img src="./assets/titiktiga.svg" alt="" class="titikTiga"></a>
+                        </div>
+                        <a href="#" id="subTask1"><img src="./assets/Arrow - Down 2.svg" alt=""></a>
+                        </div>
+                        <p class="isi"><?=$value["description"] ?></p>
+
+                    <!-- Untuk menampilkan sub task berdasarkan task id yg diminta -->
+                        <div id="subTaskView-<?= $value['task_id']?>" class="subtask hidden" >
+                            <div class="title-subtask">
+                                <p>Subtask</p>
+                                <img src="./assets/Frame 55.svg" alt="">
+                            </div>
+                            <div class="list-subtask" style="padding-left: 10px;">
+                                <?php
+                                    foreach($result3 as $subtask){
+                                        echo '<div class="row-product">';
+                                        echo '<div cass="col-product">';
+                                        echo '<label class="container">';
+                                        echo '<input type="checkbox"><label>'. $subtask["name_subtask"]. '</label>';
+                                        echo '<span class="checkmark"></span>';
+                                        echo '</label>';
+                                        echo '</div>';
+                                        echo '<img src="./assets/Vector.svg" alt="">';
+                                        echo '</div>';
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                <?php endforeach; ?>    
+
+            <!-- untuk rename dan delete task -->
+            <div id="updateId-<?= $value['task_id']?>" class="updateData hidden">
+                    <div class="update">
+                        <img src="./assets/Edit.svg" alt="">
+                        <label><a href="edit.php?id= <?=$value['task_id']?>">Rename task</a></label>
+                    </div>
+                    <div class="update">
+                        <img src="./assets/Delete.svg" alt="">
+                        <label><a href="delete.php?id= <?=$value['task_id']?>" onclick="return confirm('Anda yakin ingin menghapus task ini?')">Delete task</a></label>
+                    </div>    
+            </div>
+
+            <!-- Untuk menampilkan filter sort by -->
                 <div id="tanggalId" class="pilihan">
                     <div class="option">
                         <input type="radio" id="check1" name="radio"/>
@@ -165,17 +134,14 @@ $result5 = $conn->query($sql5);
                     </div>  
                 </div> 
         
-            
-            
+                <!-- Untuk menampilkan task yang sudah terselesaikan -->
                 <div class="bawah">
                     <div class="row-selesai" id="terselesaikan" style= "width: 291px">
                         <img src="./assets/Arrow - Right 2.svg" alt="">
                         <h4 class="selesai" style="color:#7A7F83;">Terselesaikan (3 tugas)</h4>
                     </div>
-
                     <div class="tasknew" id="selesaiId" >
                         <?php
-
                             foreach($result2 as $a){
                                 echo '<div class="row-terselesaikan">';
                                 echo '<div class="col-product">';
@@ -187,9 +153,8 @@ $result5 = $conn->query($sql5);
                                 echo '<img src="./assets/Arrow - Down 2.svg" alt="">';
                                 echo '</div>'; 
                                 }
-                            ?>
+                        ?>
                     </div>
-                
                 </div>
         
         </div>

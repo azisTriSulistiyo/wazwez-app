@@ -443,3 +443,33 @@ div ul li p{
     flex-grow: 0;
     color: black;
 }
+.date{
+    width: 180px;
+    margin-left: 38px;
+    display: flex;
+    height: 33px;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+.row-add{
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 50px 0 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 350px;
+}
+.submit{
+    background-color: white;
+    color: black;
+    border: 1px solid #f88d25;
+    padding: 8px 11px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}
