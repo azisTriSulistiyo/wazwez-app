@@ -20,3 +20,21 @@ function myFunctionTanggal2() {
   document.getElementById("tanggalOrange").classList.remove("hidden");
 
 }
+document.getElementById("terselesaikan").onclick = function() {myFunctionSelesai()};
+
+function myFunctionSelesai(){
+  document.getElementById("selesaiId").classList.toggle("show");
+}
+document.getElementById("subTask").onclick = function() {myFunctionSubtask()};
+
+function myFunctionSubtask(){
+  document.getElementById("subTaskView").classList.toggle("show");
+  document.getElementById("updateTask").classList.toggle("show");
+
+}
+
+document.getElementById("updateTask").onclick = function() {myFunctionUpdate()};
+
+function myFunctionUpdate(){
+  document.getElementById("updateId").classList.toggle("show");
+}

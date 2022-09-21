@@ -8,19 +8,21 @@
     <link rel="stylesheet" href="../css/styleDashboard.css" type="text/css">
 </head>
 <body>
-    <header>
+    <div class="header">
         <nav>
-            <img src="../assets/Logo.svg">
+            <div class="logo">waz<span style="color:#FF5F26;">wez</span>.</div>
+            <!-- <img src="../assets/Logo.svg"> -->
             <ul>
                 <li>
-                    <img src="../assets/Notification.svg" style="padding-bottom: 10px";>
+                    <img src="../assets/Notification.svg" style="
+                    padding-bottom: 10px";>
                 </li>
                 <li>
                     <img src="../assets/User Profile.svg">
                 </li>
             </ul>
         </nav>
-    </header>
+    </div>
    <div class="body-box">
     <div class="col">
         <h2>MY TASKS</h2>
@@ -36,41 +38,99 @@
 
         </div>
         <div id="contentId" class="content">
-            <div class="row-product" style= "width: 345px;">
+            <div class="row-add" >
                 <img src="../assets/Rectangle 21.svg" alt="">
                 <input class="selesai" type="text" id="namaTugas" name="namaTugas" placeholder="Masukan Nama Tugas">
             </div>
-            <div class="row-product" style= "width: 340px; margin-left: 38px; " >
+            <div class="row-add" style="margin-left:44px;" >
                 <img src="../assets/menu.svg" alt="">
                 <input class="opsi" type="text" id="namaTugas" name="namaTugas" placeholder="Deskripsi Tugas (Optional)">
             </div>
-            <div class="row-product" style= "width: 340px; margin-left: 38px;">
-                <img src="../assets/Calendar.svg" alt="">
-                <input class="opsi" type="text" id="namaTugas" name="namaTugas" placeholder="Tanggal & Waktu)">
+            <div class="row-add" style="margin-left:7px;width:411px;">
+                <div class="date">
+                    <img src="../assets/Calendar.svg" alt="">
+                    <input class="opsi" type="date" id="namaTugas" name="namaTugas" placeholder="Tanggal & Waktu">
+                </div>
+                <input type="submit" class="submit" value="Submit" name="submit">  
+
             </div>
-            
+
         </div>
-        <div class="row-product">
+        <div class="row-task">
             <div class="col-product" style="width: 300px;">
-                <input type="radio" id="checkproduct1" name="radio"/>
-                <label class="product" for="checkproduct1">Product Design</label>
+                <label class="container">
+                    <input type="checkbox"><label>Product Design</label>
+                    <span class="checkmark"></span>
+                  </label>
                 <h4 class="hari">Hari Ini</h4>
+                <a href="#" id="updateTask" class="hidden"><img src="../assets/titiktiga.svg" alt="" class="titikTiga"></a>
             </div>
-            <img src="../assets/Arrow - Down 2.svg" alt="">
+            <a href="#" id="subTask"><img src="../assets/Arrow - Down 2.svg" alt=""></a>
         </div>
         <p class="isi">Tugas untuk design team</p>
-        <div class="row-product">
+        <div id="subTaskView" class="subtask hidden" >
+            <div class="title-subtask">
+                <p>Subtask</p>
+                <img src="../assets/Frame 55.svg" alt="">
+            </div>
+            <div class="list-subtask" style="padding-left: 10px;">
+                <div class="row-product">
+                    <div class="col-product" style="width: 203px;">
+                        <label class="container">
+                            <input type="checkbox"><label>Design review</label>
+                            <span class="checkmark"></span>
+                          </label>
+                    </div>
+                    <img src="../assets/Vector.svg" alt="">
+                </div>
+                <div class="row-product">
+                    <div class="col-product" style="width: 246px;">
+                        <label class="container">
+                            <input type="checkbox"><label>Low-Fidelity design</label>
+                            <span class="checkmark"></span>
+                          </label>
+                    </div>
+                    <img src="../assets/Vector.svg" alt="">
+                </div>
+                <div class="row-product">
+                    <div class="col-product" style="width: 250px;">
+                        <label class="container">
+                            <input type="checkbox"><label>High-Fidelity design</label>
+                            <span class="checkmark"></span>
+                          </label>
+                    </div>
+                    <img src="../assets/Vector.svg" alt="">
+                </div>
+                <div class="row-product">
+                    <div class="col-product" style="width: 236px;">
+                        <label class="container">
+                            <input type="checkbox"><label>Design Guidelines</label>
+                            <span class="checkmark"></span>
+                          </label>
+                    </div>
+                    <img src="../assets/Vector.svg" alt="">
+                </div>
+
+                
+            </div>
+        </div>
+        <div class="row-task">
             <div class="col-product" style="width: 323px;">
-                <input type="radio" id="checkproduct2" name="radio"/>
-                <label class="product" for="checkproduct2">Development</label>
+                <label class="container">
+                    <input type="checkbox"><label>Development</label>
+                    <span class="checkmark"></span>
+                  </label>
                 <h4 class="hari">15 Juni 2022</h4>
             </div>
             <img src="../assets/Arrow - Down 2.svg" alt="">
         </div>
-        <div class="row-product">
+        <div class="row-task">
             <div class="col-product" style="width: 455px;">
-                <input type="radio" id="checkproduct3" name="radio"/>
-                <label class="product" for="checkproduct3">Launching Wazwez Website</label>
+                <label class="container">
+                    <input type="checkbox"><label>Launching Wazwez Website</label>
+                    <span class="checkmark"></span>
+                  </label>
+                
                 <h4 class="hari">15 Juni 2022</h4>
             </div>
             <img src="../assets/Arrow - Down 2.svg" alt="">
@@ -89,19 +149,62 @@
                      <label for="check3">Terbaru</label>
                  </div>  
              </div> 
+
+             <div id="updateId" class="updateData hidden">
+                <div class="update">
+                    <img src="../assets/Edit.svg" alt="">
+                    <label>Rename task</label>
+                </div>
+                <div class="update">
+                    <img src="../assets/Delete.svg" alt="">
+                    <label> Delete task</label>
+                </div>    
+        </div>
         
         <div class="bawah">
-            <div class="row-selesai" style= "width: 291px">
+            <div class="row-selesai" id="terselesaikan" style= "width: 291px">
                 <img src="../assets/Arrow - Right 2.svg" alt="">
                 <h4 class="selesai" style="color:#7A7F83;">Terselesaikan (3 tugas)</h4>
             </div>
-        </div>
+            <div class="tasknew" id="selesaiId" >
+                <div class="row-terselesaikan">
+                    <div class="col-product">
+                        <label class="container">
+                            <input type="checkbox" id="terselesaikan1" ><label>Requirements Detail</label>
+                            <span class="checkmark"></span>
+                          </label>
+                         
+                     </div>
+                     <img src="../assets/Arrow - Down 2.svg" alt="">
+                </div>
+                <div class="row-terselesaikan">
+                    <div class="col-product">
+                        <label class="container">
+                            <input type="checkbox" id="terselesaikan2"><label>Backlog Teams</label>
+                            <span class="checkmark"></span>
+                          </label>
+                        
+                     </div>
+                     <img src="../assets/Arrow - Down 2.svg" alt="">
+                </div>
+                <div class="row-terselesaikan">
+                    <div class="col-product">
+                        <label class="container">
+                            <input type="checkbox" id="terselesaikan3"><label>Meeting With Teams</label>
+                            <span class="checkmark"></span>
+                          </label>
+                        
+                     </div>
+                     <img src="../assets/Arrow - Down 2.svg" alt="">
+                </div>
+            </div>
+            
+    </div>
        
     </div>
         
    </div>
 <script src="../js/script.js"></script>
 
-   
 </body>
 </html>

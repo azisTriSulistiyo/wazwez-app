@@ -4,11 +4,20 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-header{
+.header{
     width: 100%;
     height: 100px;
     padding: 20px 80px;
     background: #FFFFFF;
+}
+.logo{
+    font-weight: 600;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    color: #3B3949;
+
 }
 nav{
     display: flex;
@@ -20,16 +29,20 @@ nav ul li{
     display: inline-block;
     list-style: none;
     margin: 0px 10px;
+    vertical-align: middle;
+}
+div ul li p{
+    vertical-align: middle;
 }
 .body-box{
-    position: absolute;
-    width: 800px;
-    height: 600px;
+    position: relative;
+    width: 55%;
     margin: 0 20%;
-    top: 100px;
     background: #FFFFFF;
     box-shadow: 0px 16px 90px rgb(19 7 52 / 8%);
     border-radius: 12px;
+    height: 80%;
+    padding-top: 10px;
 }
 .col{
     font-family: 'Poppins';
@@ -42,8 +55,7 @@ nav ul li{
     flex: none;
     order: 0;
     flex-grow: 0;
-    height: 500px;
-    margin-top: 40px;
+    margin-top: 21px;
 }
 .col h2{
     display: flex;
@@ -91,17 +103,17 @@ nav ul li{
     display: flex;
     color: #7A7F83;
 }
+
 .row-product{
     display: flex;
     justify-content: space-between;
-    padding: 10px 50px 0 40px;
+    padding: 0 50px 0 40px;
     align-items: center;
     position: relative;
     z-index: 2;
 }
 .col-product{
     display: flex;
-    justify-content: space-between;
     padding: 10px 50px 0 0;
     align-items: center;
 }
@@ -111,6 +123,7 @@ nav ul li{
     font-size: 18px;
     color: #293038;
     cursor: pointer;
+    padding-left: 10px;
 }
 .hari{
     flex-direction: row;
@@ -123,16 +136,17 @@ nav ul li{
     order: 1;
     font-weight: 500;
     font-size: 12px;
+    margin-left: 10px;
 }
 .body-box .bawah{
-    width: 720px;
-    height: 100px;
+    width: 89%;
     border : none;
     border-top: 1px solid #CCCED2;
     outline : none;
     margin-left: 42px;
-    position: absolute;
-    bottom: -58px;
+    position: relative;
+    margin-top: 160px;
+    padding-bottom: 20px;
 }
 .selesai{
     width: 216px;
@@ -142,6 +156,7 @@ nav ul li{
     order: 1;
     border: none;
     background: none;
+    padding: 5px 0px;
 }
 .isi{
     width: 300px;
@@ -151,7 +166,7 @@ nav ul li{
     align-items: center;
     color: #7A7F83;
     order: 1;
-    padding-left: 77px;
+    padding-left: 90px;
 
 }
 .content{
@@ -163,12 +178,21 @@ nav ul li{
     top: 186px;
     background: #F5F5F5;
 }
+.row-terselesaikan{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px 0 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
 .row-selesai{
     display: flex;
     justify-content: space-between;
     padding: 10px 50px 0 0px;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 .opsi{
     width: 223px;
@@ -212,6 +236,11 @@ nav ul li{
  .hidden{
     display: none;
  }
+ .tasknew{
+    display: none;
+ }
+
+
 
  .option input{
     display: none;
@@ -248,6 +277,7 @@ nav ul li{
  }
  .show {
     display:block;}
+
  .col-product input{
     width: 28px;
     height: 28px;
@@ -255,6 +285,99 @@ nav ul li{
  .pil-opsi .option{
     padding-bottom: 10px;
  }
+ .container {
+    font-weight: 500;
+    font-size: 18px;
+    color: #293038;
+    order: 0;
+    cursor: pointer;
+  }
+  .container input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 13px;
+    left: 0;
+    height: 25px;
+    border-radius:100px;
+    width: 25px;
+    background-color: #fff;
+    border: 1px solid #CCCED2;
+  }
+  
+  .container input:checked ~ .checkmark {
+    background-color: #FF5F26;
+
+  }
+  input[type=checkbox]:checked  + label{
+    text-decoration: line-through;
+ }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .container input:checked ~ .checkmark:after {
+    display: block;
+
+  }
+  
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+.subtask{
+    position: initial;
+    width: 693px;
+    height: 224px;
+    background: #F5F5F5;
+    border-radius: 8px;
+    margin: 10px 42px;
+}
+.title-subtask{
+    display: flex;
+    justify-content:space-between;
+    padding: 25px 16px 0;
+    
+}
+.title-subtask p{
+    width: 66px;
+    height: 16px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    align-items: center;
+    color: #293038;
+}
+.list-subtask .container{
+    font-weight: 400;
+    font-size: 16px;
+    color: #293038;
+}
+.list-subtask .col-product{
+    height: 25px;
+}
+.list-subtask .row-product{
+    padding: 10px 20px 0 40px;
+}   
+.list-subtask .checkmark{
+    background-color: #FFFFFF;
+    border: 1px solid #CCCED2;
+}
  @media only screen and (max-width: 1200px){
     .body-box{
         width: 70%;
@@ -268,5 +391,94 @@ nav ul li{
     .bawah{
         width: 85%;
     }
- }
+}
+.button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.titikTiga{
+    position: absolute;
+    margin-left: 157px;
+}
+.updateData{
+    box-sizing: border-box;
 
+    position: absolute;
+    width: 189px;
+    height: 108px;
+    left: 309px;
+    top: 240px;
+
+    /* Text Colors/White */
+
+    background: #FFFFFF;
+    /* Text Colors/Gray */
+
+    border: 1px solid #CCCED2;
+    border-radius: 8px;
+    z-index: 2;
+    padding: 24px;
+    
+}
+.update{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+
+    width: 150px;
+    height: 24px;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    color: black;
+}
+.date{
+    width: 180px;
+    margin-left: 38px;
+    display: flex;
+    height: 33px;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+.row-add{
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 50px 0 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 350px;
+}
+.submit{
+    background-color: white;
+    color: black;
+    border: 1px solid #f88d25;
+    padding: 8px 11px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.row-task{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 50px 0 40px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    margin-left: 40px;
+}
